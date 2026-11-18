@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda de Contactos Minion</title>
+
+<style>
+:root {
+    --amarillo: #ffdf35;
+    --azul: #1768b2;
+    --azul-oscuro: #124477;
+    --fondo: #fffbea;
+    --texto: #24344b;
+    --blanco: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+}
+
+header {
+    background: var(--amarillo);
+    padding: 22px;
+    text-align: center;
+    border-bottom: 7px solid var(--azul);
+}
+
+.logo {
+    font-size: 55px;
+}
+
+header h1 {
+    margin: 5px;
+    font-size: 30px;
+    color: var(--azul-oscuro);
+}
+
+header p {
+    margin: 5px;
+    font-weight: bold;
+}
+
+.container {
+    width: 92%;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+.welcome {
+    background: var(--azul);
+    color: white;
+    padding: 25px;
+    border-radius: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.welcome h2 {
+    margin-top: 0;
+}
+
+.welcome .minion {
+    font-size: 75px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 22px 0;
+}
+
+.stat {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 3px 12px #00000012;
+    border-bottom: 5px solid var(--amarillo);
+}
+
+.stat strong {
+    display: block;
+    font-size: 30px;
+    color: var(--azul);
+}
+
+.stat span {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.panel {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px #00000012;
+}
+
+.panel h2 {
+    color: var(--azul);
+    margin-top: 0;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 7px;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: var(--azul);
+}
+
+button {
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    opacity: .9;
+}
+
+.primary {
+    background: var(--azul);
+    color: white;
+    margin-top: 18px;
+}
+
+.cancel {
+    background: #e5e7eb;
+    color: #333;
+    margin-top: 18px;
+}
+
+.search {
+    margin-bottom: 18px;
+}
+
+.contactos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.contacto {
+    border: 2px solid #e8edf3;
+    border-radius: 15px;
+    padding: 18px;
+    background: #fffef8;
+}
+
+.contacto h3 {
+    color: var(--azul);
+    margin: 0 0 12px;
+}
+
+.contacto p {
+    overflow-wrap: anywhere;
+    margin: 8px 0;
+}
+
+.categoria {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: var(--amarillo);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.acciones {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.editar {
+    background: var(--azul);
+    color: white;
+}
+
+.eliminar {
+    background: #e74c3c;
+    color: white;
+}
+
+.vacio {
+    text-align: center;
+    padding: 30px;
+    color: #777;
+}
+
+footer {
+    background: var(--azul-oscuro);
+    color: white;
+    text-align: center;
+    padding: 22px;
+    margin-top: 40px;
+}
+
+@media(max-width:650px) {
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid, .contactos {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome {
+        text-align: center;
+        justify-content: center;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">👓 💛</div>
+    <h1>AGENDA DE CONTACTOS</h1>
+    <p>¡Tus amigos siempre cerca de ti!</p>
+</header>
+
+<main class="container">
+
+    <section class="welcome">
+        <div>
+            <h2>¡Hola! Bienvenido a tu agenda</h2>
+            <p>Organiza tus contactos de una manera divertida.</p>
+            <p>Registra, busca y administra tus contactos fácilmente.</p>
+        </div>
+        <div class="minion">💛👖</div>
+    </section>
+
+    <section class="stats">
+        <div class="stat">
+            <strong id="total">0</strong>
+            <span>CONTACTOS</span>
+        </div>
+
+        <div class="stat">
+            <strong id="familia">0</strong>
+            <span>FAMILIA</span>
+        </div>
+
+        <div class="stat">
+            <strong id="amigos">0</strong>
+            <span>AMIGOS</span>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2 id="tituloFormulario">➕ Agregar nuevo contacto</h2>
+
+        <form id="formulario">
+            <div class="form-grid">
+
+                <div>
+                    <label for="nombre">Nombre completo</label>
+                    <input id="nombre" type="text"
+                    placeholder="Escribe el nombre" required>
+                </div>
+
+                <div>
+                    <label for="telefono">Teléfono</label>
+                    <input id="telefono" type="tel"
+                    placeholder="Número de teléfono" required>
+                </div>
+
+                <div>
+                    <label for="correo">Correo electrónico</label>
+                    <input id="correo" type="email"
+                    placeholder="ejemplo@gmail.com" required>
+                </div>
+
+                <div>
+                    <label for="categoria">Categoría</label>
+                    <select id="categoria" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="Familia">Familia</option>
+                        <option value="Amigos">Amigos</option>
+                        <option value="Escuela">Escuela</option>
+                        <option value="Trabajo">Trabajo</option>
+                        <option value="Otros">Otros</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button class="primary" type="submit" id="guardar">
+                Guardar contacto
+            </button>
+
+            <button class="cancel" type="button"
+            id="cancelar" hidden onclick="cancelarEdicion()">
+                Cancelar
+            </button>
+        </form>
+    </section>
+
+    <section class="panel">
+        <h2>📒 Mis contactos</h2>
+
+        <input class="search" id="buscar"
+        type="search" placeholder="🔎 Buscar por nombre, correo o teléfono...">
+
+        <div id="lista" class="contactos"></div>
+    </section>
+
+</main>
+
+<footer>
+    <p>💛 Agenda de Contactos Minion</p>
+    <p>Organiza tus contactos de manera fácil y divertida.</p>
+    <small>Proyecto escolar | 2026</small>
+</footer>
+
+<script>
+const formulario = document.getElementById("formulario");
+const lista = document.getElementById("lista");
+
+let contactos = JSON.parse(
+    localStorage.getItem("agendaMinions") || "[]"
+);
+
+let indiceEdicion = null;
+
+function guardarDatos() {
+    localStorage.setItem(
+        "agendaMinions",
+        JSON.stringify(contactos)
+    );
+}
+
+function actualizarEstadisticas() {
+    document.getElementById("total").textContent =
+        contactos.length;
+
+    document.getElementById("familia").textContent =
+        contactos.filter(c => c.categoria === "Familia").length;
+
+    document.getElementById("amigos").textContent =
+        contactos.filter(c => c.categoria === "Amigos").length;
+}
+
+function mostrarContactos(filtro = "") {
+    lista.innerHTML = "";
+
+    const resultados = contactos
+        .map((contacto, indice) => ({contacto, indice}))
+        .filter(({contacto}) =>
+            contacto.nombre.toLowerCase().includes(filtro) ||
+            contacto.correo.toLowerCase().includes(filtro) ||
+            contacto.telefono.toLowerCase().includes(filtro) ||
+            contacto.categoria.toLowerCase().includes(filtro)
+        );
+
+    if (resultados.length === 0) {
+        lista.innerHTML = `
+            <div class="vacio">
+                <div style="font-size:55px">💛👓</div>
+                <h3>No hay contactos</h3>
+                <p>¡Agrega tu primer contacto!</p>
+            </div>
+        `;
+    }
+
+    resultados.forEach(({contacto, indice}) => {
+        const tarjeta = document.createElement("article");
+        tarjeta.className = "contacto";
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = "👤 " + contacto.nombre;
+
+        const telefono = document.createElement("p");
+        telefono.textContent = "📱 " + contacto.telefono;
+
+        const correo = document.createElement("p");
+        correo.textContent = "✉️ " + contacto.correo;
+
+        const categoria = document.createElement("span");
+        categoria.className = "categoria";
+        categoria.textContent = contacto.categoria;
+
+        const acciones = document.createElement("div");
+        acciones.className = "acciones";
+
+        const botonEditar = document.createElement("button");
+        botonEditar.className = "editar";
+        botonEditar.textContent = "✏️ Editar";
+        botonEditar.onclick = () => editarContacto(indice);
+
+        const botonEliminar = document.createElement("button");
+        botonEliminar.className = "eliminar";
+        botonEliminar.textContent = "🗑️ Eliminar";
+        botonEliminar.onclick = () => eliminarContacto(indice);
+
+        acciones.append(botonEditar, botonEliminar);
+
+        tarjeta.append(
+            titulo, telefono, correo, categoria, acciones
+        );
+
+        lista.appendChild(tarjeta);
+    });
+
+    actualizarEstadisticas();
+}
+
+formulario.addEventListener("submit", function(evento) {
+    evento.preventDefault();
+
+    const contacto = {
+        nombre: document.getElementById("nombre").value.trim(),
+        telefono: document.getElementById("telefono").value.trim(),
+        correo: document.getElementById("correo").value.trim(),
+        categoria: document.getElementById("categoria").value
+    };
+
+    if (indiceEdicion === null) {
+        contactos.push(contacto);
+        alert("¡Contacto guardado correctamente! 💛");
+    } else {
+        contactos[indiceEdicion] = contacto;
+        alert("¡Contacto actualizado correctamente!");
+        cancelarEdicion();
+    }
+
+    guardarDatos();
+    formulario.reset();
+    mostrarContactos();
+});
+
+function editarContacto(indice) {
+    const contacto = contactos[indice];
+
+    document.getElementById("nombre").value = contacto.nombre;
+    document.getElementById("telefono").value = contacto.telefono;
+    document.getElementById("correo").value = contacto.correo;
+    document.getElementById("categoria").value = contacto.categoria;
+
+    indiceEdicion = indice;
+
+    document.getElementById("tituloFormulario").textContent =
+        "✏️ Editar contacto";
+
+    document.getElementById("guardar").textContent =
+        "Actualizar contacto";
+
+    document.getElementById("cancelar").hidden = false;
+
+    document.getElementById("tituloFormulario")
+        .scrollIntoView({behavior:"smooth"});
+}
+
+function cancelarEdicion() {
+    indiceEdicion = null;
+    formulario.reset();
+
+    document.getElementById("tituloFormulario").textContent =
+        "➕ Agregar nuevo contacto";
+
+    document.getElementById("guardar").textContent =
+        "Guardar contacto";
+
+    document.getElementById("cancelar").hidden = true;
+}
+
+function eliminarContacto(indice) {
+    if (confirm("¿Estás seguro de eliminar este contacto?")) {
+        contactos.splice(indice, 1);
+
+        guardarDatos();
+        mostrarContactos();
+
+        if (indiceEdicion === indice) {
+            cancelarEdicion();
+        }
+    }
+}
+
+document.getElementById("buscar")
+.addEventListener("input", function() {
+    mostrarContactos(this.value.toLowerCase().trim());
+});
+
+mostrarContactos();
+</script>
+
+</body>
+</html>
